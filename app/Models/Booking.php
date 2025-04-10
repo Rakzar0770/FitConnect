@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Booking extends Model
 {
     use HasFactory;
 
-    // Разрешаем массовое присвоение для указанных полей
-    protected $fillable = [
+    protected $guarded = [
         'user_id',
         'activity_id',
         'branch_id',
@@ -18,23 +18,26 @@ class Booking extends Model
         'booked_at',
     ];
 
-    // Отношения
-    public function user()
+
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function activity()
+
+    public function activity(): BelongsTo
     {
         return $this->belongsTo(Activity::class);
     }
 
-    public function branch()
+
+    public function branch(): BelongsTo
     {
         return $this->belongsTo(Branch::class);
     }
 
-    public function trainer()
+
+    public function trainer(): BelongsTo
     {
         return $this->belongsTo(Trainer::class);
     }

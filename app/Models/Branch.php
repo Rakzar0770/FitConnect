@@ -4,24 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Branch extends Model
 {
     use HasFactory;
-
-    // Отношение с организацией
-    public function organization()
+    public function organization(): BelongsTo
     {
         return $this->belongsTo(Organization::class);
     }
 
-    // Отношение с активностями
     public function activities()
     {
         return $this->belongsToMany(Activity::class)->withTimestamps();
     }
 
-    // Отношение с тренерами
     public function trainers()
     {
         return $this->belongsToMany(Trainer::class)->withTimestamps();

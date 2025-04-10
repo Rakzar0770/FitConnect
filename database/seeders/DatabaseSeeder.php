@@ -2,31 +2,36 @@
 
 namespace Database\Seeders;
 
-
 use Illuminate\Database\Seeder;
+use App\Models\Organization;
+use App\Models\Branch;
+use App\Models\Activity;
+use App\Models\Trainer;
+use App\Models\User;
+use App\Models\Booking;
 
 class DatabaseSeeder extends Seeder
 {
     public function run()
     {
         // Создаем организации
-        \App\Models\Organization::factory(5)->create()->each(function ($organization) {
+        Organization::factory(5)->create()->each(function ($organization) {
             // Создаем филиалы для каждой организации
-            $branches = \App\Models\Branch::factory(3)->create(['organization_id' => $organization->id]);
+            $branches = Branch::factory(3)->create(['organization_id' => $organization->id]);
 
             // Привязываем активности к филиалам
-            $activities = \App\Models\Activity::factory(5)->create();
+            $activities = Activity::factory(5)->create();
             foreach ($branches as $branch) {
                 $branch->activities()->attach($activities->random(rand(1, 5))->pluck('id'));
             }
         });
 
         // Создаем тренеров
-        \App\Models\Trainer::factory(10)->create();
+        Trainer::factory(10)->create();
 
         // Создаем пользователей и записи
-        \App\Models\User::factory(10)->create()->each(function ($user) {
-            \App\Models\Booking::factory(rand(1, 3))->create(['user_id' => $user->id]);
+        User::factory(10)->create()->each(function ($user) {
+            Booking::factory(rand(1, 3))->create(['user_id' => $user->id]);
         });
     }
 }
