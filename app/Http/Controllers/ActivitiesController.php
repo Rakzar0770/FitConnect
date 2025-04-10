@@ -1,22 +1,37 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
-use App\Models\Activity;
-use Illuminate\Http\Request;
+use App\Services\ActivityService;
 use Illuminate\View\View;
+use App\Models\Activity;
 
 class ActivitiesController extends Controller
 {
+    protected ActivityService $activitiesService;
+
+    public function __construct(ActivityService $activitiesService)
+    {
+        $this->activitiesService = $activitiesService;
+    }
+
+
     public function index(): View
     {
-        $activities = Activity::all();
+        $activities = $this->activitiesService->getAllActivities();
         return view('activities.index', compact('activities'));
     }
 
-    public function show(Activity $activity): View
+
+    public function show($id): View
     {
-        $organizations = $activity->branches()->with('organization')->get()->pluck('organization')->unique();
-        return view('activities.show', compact('activity', 'organizations'));
+
+        $activity = Activity::findOrFail($id);
+
+
+        $data = $this->activitiesService->getActivityWithOrganizations($activity);
+
+        return view('activities.show', $data);
     }
 }
