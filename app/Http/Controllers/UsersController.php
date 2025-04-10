@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
 
-class UserController extends Controller
+class UsersController extends Controller
 {
-    public function dashboard()
+    public function dashboard(): View
     {
         // Получаем записи пользователя, отсортированные по времени создания (от новых к старым)
         $bookings = auth()->user()->bookings()->latest()->get();

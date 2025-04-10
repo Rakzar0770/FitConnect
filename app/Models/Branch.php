@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Branch extends Model
 {
@@ -14,12 +15,12 @@ class Branch extends Model
         return $this->belongsTo(Organization::class);
     }
 
-    public function activities()
+    public function activities(): BelongsToMany
     {
         return $this->belongsToMany(Activity::class)->withTimestamps();
     }
 
-    public function trainers()
+    public function trainers(): BelongsToMany
     {
         return $this->belongsToMany(Trainer::class)->withTimestamps();
     }

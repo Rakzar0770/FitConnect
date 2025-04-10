@@ -4,7 +4,7 @@ use App\Http\Controllers\ActivitiesController;
 use App\Http\Controllers\OrganizationsController;
 use App\Http\Controllers\BranchesController;
 use App\Http\Controllers\BookingsController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -25,7 +25,7 @@ Route::prefix('bookings')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('users.dashboard');
+    Route::get('/dashboard', [UsersController::class, 'dashboard'])->name('users.dashboard');
 });
 
 

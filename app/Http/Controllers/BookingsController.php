@@ -6,10 +6,13 @@ use App\Models\Booking;
 use App\Models\Branch;
 use App\Models\Trainer;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+
 
 class BookingsController extends Controller
 {
-    public function create($branch_id = null)
+    public function create($branch_id = null): View
     {
         // Получаем все филиалы с привязанными активностями и тренерами
         $branches = Branch::with(['activities', 'trainers'])->get();
@@ -20,7 +23,7 @@ class BookingsController extends Controller
         return view('bookings.create', compact('branches', 'selectedBranch'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         // Валидация данных с кастомными сообщениями
         $validated = $request->validate([
