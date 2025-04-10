@@ -1,36 +1,35 @@
 <?php
 
-use App\Http\Controllers\ActivityController;
-use App\Http\Controllers\OrganizationController;
-use App\Http\Controllers\BranchController;
-use App\Http\Controllers\BookingController;
+use App\Http\Controllers\ActivitiesController;
+use App\Http\Controllers\OrganizationsController;
+use App\Http\Controllers\BranchesController;
+use App\Http\Controllers\BookingsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-// Главная страница
-Route::get('/', [ActivityController::class, 'index'])->name('home');
 
-// Список занятий
-Route::resource('activities', ActivityController::class)->only(['index', 'show']);
+Route::get('/', [ActivitiesController::class, 'index'])->name('home');
 
-// Список организаций по виду занятий
-Route::get('/activities/{activity}/organizations', [OrganizationController::class, 'index'])->name('organizations.index');
 
-// Список филиалов организации
-Route::get('/organizations/{organization}/branches', [BranchController::class, 'index'])->name('branches.index');
-Route::get('/bookings/create/{branch_id}', [BookingController::class, 'create'])
-    ->name('bookings.create.with-branch');
-// Страница записи с предварительным выбором филиала
-Route::get('/bookings/create/{branch_id}', [BookingController::class, 'create'])->name('bookings.create.with-branch');
-Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
-// Страница записи
-Route::get('/bookings/create', [BookingController::class, 'create'])->name('bookings.create');
-Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
+Route::resource('activities', ActivitiesController::class)->only(['index', 'show']);
 
-// Личный кабинет пользователя
+Route::prefix('organizations')->group(function () {
+    Route::get('/{organization}/branches', [BranchesController::class, 'index'])->name('branches.index');
+});
+
+// Группа маршрутов для филиалов
+Route::prefix('branches')->group(function () {
+    // Можно добавить дополнительные маршруты для филиалов здесь
+});
+
+Route::prefix('bookings')->group(function () {
+    Route::get('/create/{branch_id}', [BookingsController::class, 'create'])->name('bookings.create.with-branch');
+    Route::post('', [BookingsController::class, 'store'])->name('bookings.store');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('users.dashboard');
 });
 
-// Загрузка маршрутов аутентификации
-require __DIR__.'/auth.php';
+
+require __DIR__ . '/auth.php';

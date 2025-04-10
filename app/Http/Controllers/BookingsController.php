@@ -7,7 +7,7 @@ use App\Models\Branch;
 use App\Models\Trainer;
 use Illuminate\Http\Request;
 
-class BookingController extends Controller
+class BookingsController extends Controller
 {
     public function create($branch_id = null)
     {

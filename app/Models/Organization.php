@@ -4,27 +4,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use \Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use \Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Organization extends Model
 {
     use HasFactory;
 
-    // Отношение с филиалами
-    public function branches()
+    public function branches(): HasMany
     {
         return $this->hasMany(Branch::class);
     }
 
-    // Отношение с тренерами (через филиалы)
-    public function trainers()
+    public function trainers(): HasManyThrough
     {
         return $this->hasManyThrough(
-            Trainer::class, // Целевая модель
-            Branch::class,  // Промежуточная модель
-            'organization_id', // Внешний ключ в промежуточной модели
-            'id',             // Первичный ключ в целевой модели
-            'id',             // Первичный ключ в текущей модели
-            'id'              // Внешний ключ в целевой модели
+            Trainer::class,
+            Branch::class,
+            'organization_id',
+            'id',
+            'id',
+            'id'
         );
     }
 }
