@@ -17,10 +17,7 @@ Route::prefix('organizations')->group(function () {
     Route::get('/{organization}/branches', [BranchesController::class, 'index'])->name('branches.index');
 });
 
-// Группа маршрутов для филиалов
-Route::prefix('branches')->group(function () {
-    // Можно добавить дополнительные маршруты для филиалов здесь
-});
+
 
 Route::prefix('bookings')->group(function () {
     Route::get('/create/{branch_id}', [BookingsController::class, 'create'])->name('bookings.create.with-branch');
