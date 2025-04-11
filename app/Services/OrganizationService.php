@@ -14,12 +14,17 @@ class OrganizationService
         return Organization::all();
     }
 
-    public function getByActivity(Activity $activity): Collection
+    public function getByActivity(Activity $activity): array
     {
-        return $activity->branches()
+        $organizations = $activity->branches()
             ->with('organization')
             ->get()
             ->pluck('organization')
             ->unique();
+
+        return [
+            'activity' => $activity,
+            'organizations' => $organizations,
+        ];
     }
 }

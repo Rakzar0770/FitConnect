@@ -11,21 +11,13 @@ class Activity extends Model
 {
     use HasFactory;
 
-    /**
-     * Филиалы, связанные с активностью.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
+
     public function branches(): BelongsToMany
     {
         return $this->belongsToMany(Branch::class)->withTimestamps();
     }
 
-    /**
-     * Записи, связанные с активностью.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
+
     public function bookings(): HasMany
     {
         return $this->hasMany(Booking::class);

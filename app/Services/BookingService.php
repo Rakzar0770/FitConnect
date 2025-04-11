@@ -6,6 +6,7 @@ use App\Models\Branch;
 use App\Models\Booking;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Validation\ValidationException;
 
 class BookingService
 {
@@ -28,7 +29,10 @@ class BookingService
     }
 
 
-    public function createBooking(array $data)
+    /**
+     * @throws ValidationException
+     */
+    public function createBooking(array $data): void
     {
 
         $validated = $this->requestService->validateBookingData($data);

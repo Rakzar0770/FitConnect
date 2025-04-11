@@ -4,13 +4,14 @@
 namespace App\Http\Controllers;
 
 use App\Services\ActivityService;
+use App\Services\OrganizationService;
 use Illuminate\View\View;
 use App\Models\Activity;
 
 class ActivitiesController extends Controller
 {
 
-    public function __construct(protected ActivityService $activitiesService)
+    public function __construct(protected ActivityService $activitiesService, protected OrganizationService $organizationService)
     {
 
     }
@@ -26,7 +27,7 @@ class ActivitiesController extends Controller
     public function show(Activity $activity): View
     {
 
-        $data = $this->activitiesService->getWithOrganizations($activity);
+        $data = $this->organizationService->getByActivity($activity);
 
         return view('activities.show', $data);
     }

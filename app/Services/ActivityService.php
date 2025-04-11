@@ -14,19 +14,4 @@ class ActivityService
         return Activity::all();
     }
 
-
-    public function getWithOrganizations(Activity $activity): array
-    {
-
-        $organizations = $activity->branches()
-            ->with('organization')
-            ->get()
-            ->pluck('organization')
-            ->unique();
-
-        return [
-            'activity' => $activity,
-            'organizations' => $organizations,
-        ];
-    }
 }
