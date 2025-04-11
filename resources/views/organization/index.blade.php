@@ -3,7 +3,7 @@
 @section('title', 'Организации')
 
 @section('content')
-    <h1 class="text-2xl font-bold mb-4">Организации для занятия "{{ $activity->name }}"</h1>
+    <h1 class="text-2xl font-bold mb-4">Организации для занятий</h1>
 
     <ul class="space-y-3">
         @foreach ($organizations as $organization)

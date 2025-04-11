@@ -14,8 +14,11 @@ Route::get('/', [ActivitiesController::class, 'index'])->name('home');
 Route::resource('activities', ActivitiesController::class)->only(['index', 'show']);
 
 Route::prefix('organizations')->group(function () {
+    Route::get('/', [OrganizationsController::class, 'show'])->name('organization.index');
     Route::get('/{organization}/branches', [BranchesController::class, 'index'])->name('branches.index');
 });
+
+
 
 
 
