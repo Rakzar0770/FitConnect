@@ -2,16 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Organization;
+use App\Services\OrganizationService;
 use App\Models\Activity;
-use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 
 class OrganizationsController extends Controller
 {
+
+    public function __construct(protected OrganizationService $organizationService)
+    {
+
+    }
+
+
     public function index(Activity $activity): View
     {
-        $organizations = $activity->branches()->with('organization')->get()->pluck('organization')->unique();
+
+        $organizations = $this->organizationService->getByActivity($activity);
+
         return view('organizations.index', compact('activity', 'organizations'));
     }
 }

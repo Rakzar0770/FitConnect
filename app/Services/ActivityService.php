@@ -9,13 +9,13 @@ use Illuminate\Database\Eloquent\Collection;
 class ActivityService
 {
 
-    public function getAllActivities(): Collection
+    public function getAll(): Collection
     {
         return Activity::all();
     }
 
 
-    public function getActivityWithOrganizations(Activity $activity): array
+    public function getWithOrganizations(Activity $activity): array
     {
 
         $organizations = $activity->branches()

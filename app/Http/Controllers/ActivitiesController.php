@@ -9,28 +9,24 @@ use App\Models\Activity;
 
 class ActivitiesController extends Controller
 {
-    protected ActivityService $activitiesService;
 
-    public function __construct(ActivityService $activitiesService)
+    public function __construct(protected ActivityService $activitiesService)
     {
-        $this->activitiesService = $activitiesService;
+
     }
 
 
     public function index(): View
     {
-        $activities = $this->activitiesService->getAllActivities();
+        $activities = $this->activitiesService->getAll();
         return view('activities.index', compact('activities'));
     }
 
 
-    public function show($id): View
+    public function show(Activity $activity): View
     {
 
-        $activity = Activity::findOrFail($id);
-
-
-        $data = $this->activitiesService->getActivityWithOrganizations($activity);
+        $data = $this->activitiesService->getWithOrganizations($activity);
 
         return view('activities.show', $data);
     }
