@@ -15,7 +15,7 @@
         </div>
     @endif
 
-    <form action="{{ route('bookings.store') }}" method="POST" class="bg-white p-6 rounded shadow-sm">
+    <form action="{{ route('bookings.view') }}" method="POST" class="bg-white p-6 rounded shadow-sm">
         @csrf
 
         <!-- Филиал -->

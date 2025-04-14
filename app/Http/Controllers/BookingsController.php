@@ -16,7 +16,7 @@ class BookingsController extends Controller
     }
 
 
-    public function create(int $branch_id = null): View
+    public function view(int $branch_id = null): View
     {
 
         $branches = $this->bookingService->getAll();

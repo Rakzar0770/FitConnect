@@ -23,8 +23,8 @@ Route::prefix('organizations')->group(function () {
 
 
 Route::prefix('bookings')->group(function () {
-    Route::get('/create/{branch_id}', [BookingsController::class, 'create'])->name('bookings.create.with-branch');
-    Route::post('', [BookingsController::class, 'store'])->name('bookings.store');
+    Route::get('/bookings/create', [BookingsController::class, 'view'])->name('bookings.view');
+    Route::post('/bookings/create', [BookingsController::class, 'store'])->name('bookings.store');
 });
 
 Route::middleware('auth')->group(function () {

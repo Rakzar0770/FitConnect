@@ -38,7 +38,7 @@
 <div class="header">
     <div class="container">
         <a href="{{ route('home') }}">Главная</a>
-        <a href="{{ route('bookings.create.with-branch', ['branch_id' => 1]) }}">Записаться</a>
+        <a href="{{ route('bookings.view', ['branch_id' => 1]) }}">Записаться</a>
         @auth
             <a href="{{ route('users.dashboard') }}">Личный кабинет</a>
             <form action="{{ route('logout') }}" method="POST" style="display: inline;">

@@ -11,7 +11,9 @@ use App\Models\Activity;
 class ActivitiesController extends Controller
 {
 
-    public function __construct(protected ActivityService $activitiesService, protected OrganizationService $organizationService)
+    public function __construct(
+        protected ActivityService $activitiesService,
+        protected OrganizationService $organizationService)
     {
 
     }
