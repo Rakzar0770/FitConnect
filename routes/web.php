@@ -23,8 +23,8 @@ Route::prefix('organizations')->group(function () {
 
 
 Route::prefix('bookings')->group(function () {
-    Route::get('/bookings/create', [BookingsController::class, 'view'])->name('bookings.view');
-    Route::post('/bookings/create', [BookingsController::class, 'store'])->name('bookings.store');
+    Route::get('/create', [BookingsController::class, 'view'])->name('bookings.view');
+    Route::post('/create', [BookingsController::class, 'store'])->name('bookings.store');
 });
 
 Route::middleware('auth')->group(function () {

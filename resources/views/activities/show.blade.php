@@ -3,8 +3,8 @@
 @section('title', 'Информация о занятии')
 
 @section('content')
-    <h1 class="text-2xl font-bold mb-4">{{ $activity->name }}</h1>
-    <p class="mb-6 text-gray-700">{{ $activity->description }}</p>
+{{--    <h1 class="text-2xl font-bold mb-4">{{ $activity->name }}</h1>--}}
+{{--    <p class="mb-6 text-gray-700">{{ $activity->description }}</p>--}}
 
     <h2 class="text-xl font-semibold mb-3">Организации, предлагающие это занятие:</h2>
     <ul class="space-y-3">

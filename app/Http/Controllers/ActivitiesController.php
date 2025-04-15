@@ -25,7 +25,6 @@ class ActivitiesController extends Controller
 
     public function show(Activity $activity): View
     {
-
         $data = $this->organizationService->getByActivity($activity);
 
         return view('activities.show', $data);

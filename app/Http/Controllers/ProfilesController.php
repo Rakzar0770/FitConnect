@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Services\SessionService;
+use App\Services\RedirectService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,10 +14,8 @@ use Illuminate\View\View;
 class ProfilesController extends Controller
 {
 
-    public function __construct(protected SessionService $sessionService)
-    {
-
-    }
+    public function __construct(protected SessionService $sessionService,
+                                protected RedirectService $redirectService) {}
 
     /**
      * Display the user's profile form.
@@ -42,7 +41,7 @@ class ProfilesController extends Controller
         $request->user()->save();
 
 
-        return $this->sessionService->setStatus('profile-updated');
+        return $this->redirectService->setStatus('profile.edit', 'Профиль успешно обновлён');
     }
 
     /**

@@ -23,7 +23,7 @@ class OrganizationService
             ->unique();
 
         return [
-            'activity' => $activity,
+            //'activity' => $activity,
             'organizations' => $organizations,
         ];
     }
