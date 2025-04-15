@@ -19,9 +19,6 @@ Route::prefix('organizations')->group(function () {
 });
 
 
-
-
-
 Route::prefix('bookings')->group(function () {
     Route::get('/create', [BookingsController::class, 'view'])->name('bookings.view');
     Route::post('/create', [BookingsController::class, 'store'])->name('bookings.store');

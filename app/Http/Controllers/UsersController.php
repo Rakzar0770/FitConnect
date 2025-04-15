@@ -10,7 +10,6 @@ class UsersController extends Controller
 {
     public function dashboard(): View
     {
-
         $bookings = auth()->user()->bookings()->latest()->get();
 
         return view('users.dashboard', compact('bookings'));

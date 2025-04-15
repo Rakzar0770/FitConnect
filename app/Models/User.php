@@ -20,11 +20,6 @@ class User extends Authenticatable
         'updated_at',
         'email_verified_at',
     ];
-//    protected $fillable = [
-//        'name',
-//        'email',
-//        'password',
-//    ];
 
     public function bookings(): HasMany
     {

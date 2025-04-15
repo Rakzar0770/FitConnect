@@ -10,14 +10,16 @@ class BranchesController extends Controller
 {
 
 
-    public function __construct(protected BranchService $branchService) {}
+    public function __construct(protected BranchService $branchService)
+    {
+    }
 
 
     public function index(Organization $organization): View
     {
-
         $branches = $this->branchService->getBranchesByOrganization($organization);
 
         return view('branches.index', compact('organization', 'branches'));
     }
+
 }

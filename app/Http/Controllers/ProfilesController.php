@@ -14,8 +14,11 @@ use Illuminate\View\View;
 class ProfilesController extends Controller
 {
 
-    public function __construct(protected SessionService $sessionService,
-                                protected RedirectService $redirectService) {}
+    public function __construct(
+        protected SessionService $sessionService,
+        protected RedirectService $redirectService
+    ) {
+    }
 
     /**
      * Display the user's profile form.

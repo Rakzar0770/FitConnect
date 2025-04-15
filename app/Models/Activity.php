@@ -22,4 +22,9 @@ class Activity extends Model
     {
         return $this->hasMany(Booking::class);
     }
+
+    public function organizations(): BelongsToMany
+    {
+        return $this->belongsToMany(Organization::class);
+    }
 }

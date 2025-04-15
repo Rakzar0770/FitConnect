@@ -16,14 +16,6 @@ class Booking extends Model
         'updated_at',
     ];
 
-//    protected $fillable = [
-//        'user_id',
-//        'activity_id',
-//        'branch_id',
-//        'trainer_id',
-//        'booked_at',
-//    ];
-
 
     public function user(): BelongsTo
     {

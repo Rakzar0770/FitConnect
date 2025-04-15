@@ -13,7 +13,6 @@ class BookingService
 
     public function __construct(protected RequestService $requestService)
     {
-
     }
 
 
@@ -29,12 +28,8 @@ class BookingService
     }
 
 
-    /**
-     * @throws ValidationException
-     */
     public function createBooking(array $data): void
     {
-
         $validated = $this->requestService->validateBookingData($data);
 
 

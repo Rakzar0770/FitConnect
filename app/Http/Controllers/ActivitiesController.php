@@ -13,8 +13,9 @@ class ActivitiesController extends Controller
 
     public function __construct(
         protected ActivityService $activitiesService,
-        protected OrganizationService $organizationService) {}
-
+        protected OrganizationService $organizationService
+    ) {
+    }
 
     public function index(): View
     {
@@ -23,10 +24,12 @@ class ActivitiesController extends Controller
     }
 
 
-    public function show(Activity $activity): View
+    public function show(int $id): View
     {
-        $data = $this->organizationService->getByActivity($activity);
+        $activity = $this->activitiesService->getActivity($id);
 
-        return view('activities.show', $data);
+        $organizations = $this->activitiesService->getOrganizationsByActivity($activity);
+
+        return view('activities.show', compact('activity', 'organizations'));
     }
 }

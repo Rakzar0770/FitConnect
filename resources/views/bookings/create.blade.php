@@ -26,7 +26,7 @@
                     <option value="{{ $branch->id }}"
                             data-activities='@json($branch->activities)'
                             data-trainers='@json($branch->trainers)'
-                        {{ $selectedBranch && $selectedBranch->id === $branch->id ? 'selected' : '' }}>
+                        {{ isset($selectedBranch) && $selectedBranch->id == $branch->id ? 'selected' : '' }}>
                         {{ $branch->address }}
                     </option>
                 @endforeach
@@ -101,8 +101,8 @@
                 const activities = JSON.parse(initialOption.dataset.activities);
                 const trainers = JSON.parse(initialOption.dataset.trainers);
 
-                updateActivities(activities);
-                updateTrainers(trainers);
+                updateActivities(activities || []);
+                updateTrainers(trainers || []);
             }
         });
     </script>
