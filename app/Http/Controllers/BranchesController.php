@@ -10,10 +10,7 @@ class BranchesController extends Controller
 {
 
 
-    public function __construct(protected BranchService $branchService)
-    {
-
-    }
+    public function __construct(protected BranchService $branchService) {}
 
 
     public function index(Organization $organization): View

@@ -9,9 +9,9 @@ use Illuminate\Http\RedirectResponse;
 class SessionService
 {
 
-    public function setStatus(string $status): RedirectResponse
+    public function setStatus(string $route, string $status): RedirectResponse
     {
-        return Redirect::route('profile.edit')->with('status', $status);
+        return Redirect::route($route)->with('status', $status);
     }
 
 

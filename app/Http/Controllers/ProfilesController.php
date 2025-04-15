@@ -41,7 +41,7 @@ class ProfilesController extends Controller
 
         $request->user()->save();
 
-        // Используем сервис для установки статуса
+
         return $this->sessionService->setStatus('profile-updated');
     }
 

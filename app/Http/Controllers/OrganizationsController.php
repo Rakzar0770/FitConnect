@@ -10,10 +10,7 @@ use Illuminate\Contracts\View\View;
 class OrganizationsController extends Controller
 {
 
-    public function __construct(protected OrganizationService $organizationService)
-    {
-
-    }
+    public function __construct(protected OrganizationService $organizationService) {}
 
 
     public function index(Activity $activity): View

@@ -10,7 +10,7 @@ class UsersController extends Controller
 {
     public function dashboard(): View
     {
-        // Получаем записи пользователя, отсортированные по времени создания (от новых к старым)
+
         $bookings = auth()->user()->bookings()->latest()->get();
 
         return view('users.dashboard', compact('bookings'));

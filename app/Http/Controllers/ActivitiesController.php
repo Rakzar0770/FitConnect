@@ -13,10 +13,7 @@ class ActivitiesController extends Controller
 
     public function __construct(
         protected ActivityService $activitiesService,
-        protected OrganizationService $organizationService)
-    {
-
-    }
+        protected OrganizationService $organizationService) {}
 
 
     public function index(): View
