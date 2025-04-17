@@ -7,7 +7,6 @@ use Illuminate\Validation\ValidationException;
 
 class RequestService
 {
-
     public function validateBookingData(array $data): array
     {
         $rules = [
@@ -20,7 +19,6 @@ class RequestService
         $messages = [
             'booked_at.required' => 'Вы не указали дату и время',
         ];
-
 
         $validator = Validator::make($data, $rules, $messages);
 

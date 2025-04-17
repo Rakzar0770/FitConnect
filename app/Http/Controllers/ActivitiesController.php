@@ -10,11 +10,11 @@ use App\Models\Activity;
 
 class ActivitiesController extends Controller
 {
-
     public function __construct(
         protected ActivityService $activitiesService,
         protected OrganizationService $organizationService
     ) {
+
     }
 
     public function index(): View
@@ -23,12 +23,11 @@ class ActivitiesController extends Controller
         return view('activities.index', compact('activities'));
     }
 
-
     public function show(int $id): View
     {
         $activity = $this->activitiesService->getActivity($id);
 
-        $organizations = $this->activitiesService->getOrganizationsByActivity($activity);
+        $organizations = $this->organizationService->getByActivity($activity);
 
         return view('activities.show', compact('activity', 'organizations'));
     }

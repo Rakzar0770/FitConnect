@@ -10,21 +10,25 @@
             font-family: 'Arial', sans-serif;
             background-color: #f3f4f6;
         }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
+
         .header {
             background-color: #1e40af;
             color: white;
             padding: 15px 0;
         }
+
         .header a {
             color: white;
             text-decoration: none;
             margin-right: 15px;
         }
+
         .footer {
             text-align: center;
             padding: 10px;

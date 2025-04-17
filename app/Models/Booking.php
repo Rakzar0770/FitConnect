@@ -9,31 +9,26 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Booking extends Model
 {
     use HasFactory;
-
     protected $guarded = [
         'id',
         'created_at',
         'updated_at',
     ];
 
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
-
 
     public function activity(): BelongsTo
     {
         return $this->belongsTo(Activity::class);
     }
 
-
     public function branch(): BelongsTo
     {
         return $this->belongsTo(Branch::class);
     }
-
 
     public function trainer(): BelongsTo
     {

@@ -11,12 +11,10 @@ class Activity extends Model
 {
     use HasFactory;
 
-
     public function branches(): BelongsToMany
     {
         return $this->belongsToMany(Branch::class)->withTimestamps();
     }
-
 
     public function bookings(): HasMany
     {

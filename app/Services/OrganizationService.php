@@ -8,22 +8,17 @@ use Illuminate\Support\Collection;
 
 class OrganizationService
 {
-
     public function getAll(): Collection
     {
         return Organization::all();
     }
 
-    public function getByActivity(Activity $activity): array
+    public function getByActivity(Activity $activity)
     {
-        $organizations = $activity->branches()
+        return $activity->branches()
             ->with('organization')
             ->get()
             ->pluck('organization')
             ->unique();
-
-        return [
-            'organizations' => $organizations,
-        ];
     }
 }
