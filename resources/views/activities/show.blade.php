@@ -12,7 +12,7 @@
             <li class="bg-white p-4 rounded shadow-sm">
                 <h3 class="text-lg font-medium"><a
                         href="{{ route('branches.index', $organization) }}">{{ $organization->name }}</a></h3>
-                <p class="text-gray-600">Телефон: {{ $organization->phone ?? 'Не указан' }}</p>
+{{--                <p class="text-gray-600">Телефон: {{ $organization->phone ?? 'Не указан' }}</p>--}}
             </li>
         @endforeach
     </ul>

@@ -49,6 +49,15 @@ class OrganizationResource extends Resource
                                 ->helperText('Введите адрес филиала.')
                                 ->columnSpanFull(), // Занимает всю ширину
 
+                            Forms\Components\TextInput::make('phone')
+                                ->label('Телефон филиала')
+                                ->tel() // Тип поля "телефон"
+                                ->helperText('Введите номер телефона филиала.')
+                                ->extraAttributes([
+                                    'placeholder' => '+7 (___) ___-__-__',
+                                ])
+                                ->columnSpan(1), // Занимает одну колонку
+
                             Forms\Components\Repeater::make('trainers')
                                 ->label('Тренеры')
                                 ->relationship()
