@@ -10,9 +10,8 @@ use \Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
-
-    use HasFactory, Notifiable;
-
+    use HasFactory;
+    use Notifiable;
 
     protected $guarded = [
         'id',
@@ -26,12 +25,10 @@ class User extends Authenticatable
         return $this->hasMany(Booking::class);
     }
 
-
     protected $hidden = [
         'password',
         'remember_token',
     ];
-
 
     protected function casts(): array
     {

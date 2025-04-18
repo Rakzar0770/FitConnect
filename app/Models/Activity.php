@@ -10,7 +10,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Activity extends Model
 {
 
-    protected $guarded = ['id'];
+    protected $guarded = [
+        'id',
+        'created_at',
+        'updated_at',
+    ];
+
     protected $search = ['name','description'];
     use HasFactory;
 
