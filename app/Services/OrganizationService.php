@@ -13,7 +13,7 @@ class OrganizationService
         return Organization::all();
     }
 
-    public function getByActivity(Activity $activity)
+    public function getByActivity(Activity $activity): Collection
     {
         return $activity->branches()
             ->with('organization')

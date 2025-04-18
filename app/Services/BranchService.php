@@ -7,14 +7,10 @@ use Illuminate\Database\Eloquent\Collection;
 
 class BranchService
 {
-
     public function getBranchesByOrganization(Organization $organization): Collection
     {
         return $organization->branches()
             ->with('activities', 'trainers')
             ->get();
     }
-
-
-
 }

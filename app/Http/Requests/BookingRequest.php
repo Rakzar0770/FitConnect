@@ -7,17 +7,10 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class BookingRequest extends FormRequest
 {
-    /**
-     * Определяет, может ли пользователь выполнять этот запрос.
-     */
     public function authorize(): bool
     {
         return true;
     }
-
-    /**
-     * Правила валидации.
-     */
     public function rules(): array
     {
         return [
@@ -36,13 +29,11 @@ class BookingRequest extends FormRequest
 
     public function getInputDTO(): CreateBookingDTO
     {
-        $validated = $this->validated();
-
         return new CreateBookingDTO(
-            activity_id: $validated['activity_id'],
-            branch_id: $validated['branch_id'],
-            trainer_id: $validated['trainer_id'],
-            booked_at: $validated['booked_at']
+            activity_id: $this['activity_id'],
+            branch_id: $this['branch_id'],
+            trainer_id: $this['trainer_id'],
+            booked_at: $this['booked_at']
         );
     }
 }

@@ -13,16 +13,12 @@ use Illuminate\View\View;
 
 class ProfilesController extends Controller
 {
-
     public function __construct(
         protected SessionService $sessionService,
         protected RedirectService $redirectService
     ) {
     }
 
-    /**
-     * Display the user's profile form.
-     */
     public function edit(Request $request): View
     {
         return view('profile.edit', [
@@ -30,9 +26,6 @@ class ProfilesController extends Controller
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $request->user()->fill($request->validated());
@@ -47,9 +40,6 @@ class ProfilesController extends Controller
         return $this->redirectService->setStatus('profile.edit', 'Профиль успешно обновлён');
     }
 
-    /**
-     * Delete the user's account.
-     */
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [

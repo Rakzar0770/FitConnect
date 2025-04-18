@@ -28,8 +28,7 @@ class BookingsController extends Controller
     public function store(BookingRequest $request): RedirectResponse
     {
         try {
-            $dto = $request->getInputDTO();
-            $this->bookingService->createBooking($dto);
+            $this->bookingService->createBooking($request->getInputDTO());
 
             return redirect()->route('users.dashboard')->with('success', 'Вы успешно записались!');
         } catch (\Exception $e) {
