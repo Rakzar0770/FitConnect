@@ -1,0 +1,73 @@
+[33mcommit c6a0aa64c2de2026731f349d010977fc6174b7db[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Leifkul <sergofan0770@gmail.com>
+Date:   Thu Apr 10 09:38:21 2025 -0700
+
+    Сделал первый сервис ActivityService.php для примера
+
+[33mcommit e2e9f80cf613f9e5124908c31c24ac5661c885d7[m
+Author: Leifkul <sergofan0770@gmail.com>
+Date:   Thu Apr 10 04:44:34 2025 -0700
+
+    Обновил роуты, guarded, контроллеры доперевёл во множественное число, доделал возвращаемые типы (вроде)
+
+[33mcommit 9849e6183e8153b64c2c1c17e182e7174c87b4e9[m
+Merge: 28c8935 453e718
+Author: Leifkul <sergofan0770@gmail.com>
+Date:   Thu Apr 10 02:16:10 2025 -0700
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit 28c8935e3f64929f748567126242a0d44c22b0c1[m
+Author: Leifkul <sergofan0770@gmail.com>
+Date:   Thu Apr 10 02:15:57 2025 -0700
+
+    подправил роуты
+
+[33mcommit 453e718f55c33cfa7a91f3051adb700e037c40f1[m
+Merge: 311124a 06cf736
+Author: Leifkul <sergofan0770@gmail.com>
+Date:   Wed Apr 9 21:28:16 2025 -0700
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit 311124a190f7f4925ce92f6b1bcfcff6b9bc1a9d[m
+Author: Leifkul <sergofan0770@gmail.com>
+Date:   Wed Apr 9 21:24:08 2025 -0700
+
+    Исправил почти всё. Осталось добавть сервисы и реквесты
+
+[33mcommit 06cf736f7a9890cac571e8d7667f06d5d5490447[m
+Author: Leifkul <sergofan0770@gmail.com>
+Date:   Wed Apr 9 21:24:08 2025 -0700
+
+    Исправил почти всё. Осталось добавть сервисы и реквесты
+
+[33mcommit 12d227f2e94cd7c26fc636968eb42f0340266638[m
+Author: Leifkul <sergofan0770@gmail.com>
+Date:   Tue Apr 8 21:10:13 2025 -0700
+
+    first commit
+
+[33mcommit 160137254a9f6018296fec292e196e71a0086d73[m
+Author: Leifkul <sergofan0770@gmail.com>
+Date:   Tue Apr 8 21:01:46 2025 -0700
+
+    first commit
+
+[33mcommit d6cbfab9d6aa44228ba6a81cfa6940c4e2e2f34e[m
+Author: Leifkul <sergofan0770@gmail.com>
+Date:   Tue Apr 8 20:57:52 2025 -0700
+
+    -
+
+[33mcommit 9d4b1690660455351a291341cfc2437ead709c35[m
+Author: Leifkul <sergofan0770@gmail.com>
+Date:   Tue Apr 8 20:51:28 2025 -0700
+
+    first commit
+
+[33mcommit d5ef6805527896f4635731000674fc32fae83f91[m
+Author: Leifkul <sergofan0770@gmail.com>
+Date:   Tue Apr 8 03:59:07 2025 -0700
+
+    first commit
