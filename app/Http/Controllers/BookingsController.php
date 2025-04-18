@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\Bookings\CreateBookingDTO;
+use App\Http\Requests\BookingRequest;
 use App\Services\BookingService;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
@@ -23,12 +25,11 @@ class BookingsController extends Controller
         return view('bookings.create', compact('branches', 'selectedBranch'));
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(BookingRequest $request): RedirectResponse
     {
         try {
-            $requestData = $request->all();
-
-            $this->bookingService->createBooking($requestData);
+            $dto = $request->getInputDTO();
+            $this->bookingService->createBooking($dto);
 
             return redirect()->route('users.dashboard')->with('success', 'Вы успешно записались!');
         } catch (\Exception $e) {

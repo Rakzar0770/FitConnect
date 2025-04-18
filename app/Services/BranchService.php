@@ -14,4 +14,7 @@ class BranchService
             ->with('activities', 'trainers')
             ->get();
     }
+
+
+
 }
