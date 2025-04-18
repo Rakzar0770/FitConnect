@@ -48,7 +48,7 @@
         <!-- Время -->
         <div class="mb-4">
             <label for="booked_at" class="block text-gray-700 font-medium mb-2">Время:</label>
-            <input type="datetime-local" name="booked_at" id="booked_at" class="w-full p-2 border rounded">
+            <input type="datetime-local" name="booked_at" id="booked_at" class="w-full p-2 border rounded" required>
         </div>
 
         <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
@@ -56,12 +56,12 @@
         </button>
     </form>
 
-    <!-- Подключение скрипта -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const branchSelect = document.getElementById('branch_id');
             const activitySelect = document.getElementById('activity_id');
             const trainerSelect = document.getElementById('trainer_id');
+            const bookedAtInput = document.getElementById('booked_at');
 
             // Функция для обновления списка активностей
             function updateActivities(activities) {
@@ -104,6 +104,24 @@
                 updateActivities(activities || []);
                 updateTrainers(trainers || []);
             }
+
+            // Установка минимального времени для поля "booked_at"
+            function setMinDateTime() {
+                const now = new Date();
+                const year = now.getFullYear();
+                const month = String(now.getMonth() + 1).padStart(2, '0'); // Месяцы начинаются с 0
+                const day = String(now.getDate()).padStart(2, '0');
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+
+                bookedAtInput.min = `${year}-${month}-${day}T${hours}:${minutes}`;
+            }
+
+            // Вызываем функцию при загрузке страницы
+            setMinDateTime();
+
+            // Также можно обновлять минимальное время при изменении поля
+            bookedAtInput.addEventListener('focus', setMinDateTime);
         });
     </script>
 @endsection
