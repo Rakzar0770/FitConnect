@@ -11,20 +11,37 @@ class Organization extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+    protected $search = ['name'];
+
     public function branches(): HasMany
     {
         return $this->hasMany(Branch::class);
     }
 
-    public function trainers(): HasManyThrough
+//    public function trainers(): HasManyThrough
+//    {
+//        return $this->hasManyThrough(
+//            Trainer::class,
+//            Branch::class,
+//            'organization_id',
+//            'id',
+//            'id',
+//            'id'
+//        );
+//    }
+
+    // Связь с тренерами (через филиалы)
+    public function trainers()
     {
-        return $this->hasManyThrough(
-            Trainer::class,
-            Branch::class,
-            'organization_id',
-            'id',
-            'id',
-            'id'
-        );
+        return $this->hasManyThrough(Trainer::class, Branch::class);
+    }
+
+    // Связь с активностями (через филиалы)
+    public function activities()
+    {
+        return $this->belongsToMany(Activity::class, 'branch_activity')
+            ->using(BranchesActivity::class)
+            ->withPivot('branch_id');
     }
 }

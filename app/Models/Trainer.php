@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Trainer extends Model
 {
+    protected $fillable = ['name'];
     use HasFactory;
     public function branches()
     {

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Branch extends Model
 {
+    protected $fillable = ['address'];
     use HasFactory;
     public function organization(): BelongsTo
     {

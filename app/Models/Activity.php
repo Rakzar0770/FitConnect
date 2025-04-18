@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Activity extends Model
 {
+
+    protected $guarded = ['id'];
+    protected $search = ['name','description'];
     use HasFactory;
 
 
