@@ -30,10 +30,10 @@ class BookingRequest extends FormRequest
     public function getInputDTO(): CreateBookingDTO
     {
         return new CreateBookingDTO(
-            activity_id: $this->input('activity_id'),
-            branch_id: $this->input('branch_id'),
-            trainer_id: $this->input('trainer_id'),
-            booked_at: $this->input('booked_at')
+            activity_id: $this['activity_id'],
+            branch_id: $this['branch_id'],
+            trainer_id: $this['trainer_id'],
+            booked_at: $this['booked_at']
         );
     }
 }
