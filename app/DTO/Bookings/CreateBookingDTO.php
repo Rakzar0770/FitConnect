@@ -2,7 +2,7 @@
 
 namespace App\DTO\Bookings;
 
-class CreateBookingDTO
+readonly class CreateBookingDTO
 {
     public function __construct(
         private int $activity_id,
