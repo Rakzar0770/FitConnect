@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\DTO\Bookings\CreateBookingDTO;
 use App\Models\Branch;
 use App\Models\Booking;
 use Illuminate\Support\Facades\Auth;
@@ -28,23 +29,23 @@ class BookingService
     }
 
 
-    public function createBooking(array $data): void
+    public function createBooking(CreateBookingDTO $data): void
     {
-        $validated = $this->requestService->validateBookingData($data);
-
-
-        $validated['user_id'] = Auth::id();
-
-
-        $isTimeAvailable = !Booking::where('trainer_id', $validated['trainer_id'])
-            ->where('booked_at', $validated['booked_at'])
+        $bookingData = [
+            'user_id' => Auth::id(),
+            'activity_id' => $data->getActivityId(),
+            'branch_id' => $data->getBranchId(),
+            'trainer_id' => $data->getTrainerId(),
+            'booked_at' => $data->getBookedAt(),
+        ];
+        $isTimeAvailable = !Booking::where('trainer_id', $data->getTrainerId())
+            ->where('booked_at', $data->getBookedAt())
             ->exists();
 
         if (!$isTimeAvailable) {
             throw new \Exception('Это время уже занято. Пожалуйста, выберите другое время.');
         }
 
-
-        Booking::create($validated);
+        Booking::create($bookingData);
     }
 }
