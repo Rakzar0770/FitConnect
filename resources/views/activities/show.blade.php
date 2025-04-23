@@ -9,10 +9,13 @@
     <h2 class="text-xl font-semibold mb-3">Организации, предлагающие это занятие:</h2>
     <ul class="space-y-3">
         @foreach ($organizations as $organization)
-            <li class="bg-white p-4 rounded shadow-sm">
-                <h3 class="text-lg font-medium"><a
-                        href="{{ route('branches.index', $organization) }}">{{ $organization->name }}</a></h3>
-                <p class="text-gray-600">Телефон: {{ $organization->phone ?? 'Не указан' }}</p>
+            <li class="block">
+                <!-- Оборачиваем весь блок в ссылку -->
+                <a href="{{ route('branches.index', $organization) }}"
+                   class="block bg-white p-4 rounded shadow-sm hover:bg-blue-50 transition-colors duration-200">
+                    <h3 class="text-lg font-medium text-blue-700">{{ $organization->name }}</h3>
+                    <p class="text-gray-600">Телефон: {{ $organization->phone ?? 'Не указан' }}</p>
+                </a>
             </li>
         @endforeach
     </ul>
