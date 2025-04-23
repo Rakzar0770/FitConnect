@@ -3,59 +3,58 @@
 @section('title', 'Запись на занятие')
 
 @section('content')
-    <h1 class="text-2xl font-bold mb-4">Запись на занятие</h1>
-
-    @if ($errors->any())
-        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    <form action="{{ route('bookings.view') }}" method="POST" class="bg-white p-6 rounded shadow-sm">
-        @csrf
-
-        <!-- Филиал -->
-        <div class="mb-4">
-            <label for="branch_id" class="block text-gray-700 font-medium mb-2">Филиал:</label>
-            <select name="branch_id" id="branch_id" class="w-full p-2 border rounded">
-                @foreach ($branches as $branch)
-                    <option value="{{ $branch->id }}"
-                            data-activities='@json($branch->activities)'
-                            data-trainers='@json($branch->trainers)'
-                        {{ isset($selectedBranch) && $selectedBranch->id == $branch->id ? 'selected' : '' }}>
-                        {{ $branch->address }}
-                    </option>
-                @endforeach
-            </select>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Заголовок с названием организации -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-indigo-900">FitConnect</h1>
+            <p class="text-lg text-gray-700">Запишитесь на занятие прямо сейчас!</p>
         </div>
 
-        <!-- Активности -->
-        <div class="mb-4">
-            <label for="activity_id" class="block text-gray-700 font-medium mb-2">Активность:</label>
-            <select name="activity_id" id="activity_id" class="w-full p-2 border rounded"></select>
-        </div>
+        <!-- Форма записи -->
+        <form action="{{ route('bookings.view') }}" method="POST" class="bg-white p-8 rounded-2xl shadow-xl transition-all hover:shadow-2xl">
+            @csrf
 
-        <!-- Тренеры -->
-        <div class="mb-4">
-            <label for="trainer_id" class="block text-gray-700 font-medium mb-2">Тренер:</label>
-            <select name="trainer_id" id="trainer_id" class="w-full p-2 border rounded"></select>
-        </div>
+            <!-- Адрес -->
+            <div class="mb-5">
+                <label for="branch_id" class="block text-sm font-medium text-gray-700 mb-1">Адрес:</label>
+                <select name="branch_id" id="branch_id" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-300">
+                    @foreach ($branches as $branch)
+                        <option value="{{ $branch->id }}"
+                                data-activities='@json($branch->activities)'
+                                data-trainers='@json($branch->trainers)'
+                            {{ isset($selectedBranch) && $selectedBranch->id == $branch->id ? 'selected' : '' }}>
+                            {{ $branch->organization?->name ?? 'Неизвестная организация' }} ({{ $branch->address }})
+                        </option>
+                    @endforeach
+                </select>
+            </div>
 
-        <!-- Время -->
-        <div class="mb-4">
-            <label for="booked_at" class="block text-gray-700 font-medium mb-2">Время:</label>
-            <input type="datetime-local" name="booked_at" id="booked_at" class="w-full p-2 border rounded" required>
-        </div>
+            <!-- Активности -->
+            <div class="mb-5">
+                <label for="activity_id" class="block text-sm font-medium text-gray-700 mb-1">Активность:</label>
+                <select name="activity_id" id="activity_id" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-300"></select>
+            </div>
 
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-            Записаться
-        </button>
-    </form>
+            <!-- Тренеры -->
+            <div class="mb-5">
+                <label for="trainer_id" class="block text-sm font-medium text-gray-700 mb-1">Запись к:</label>
+                <select name="trainer_id" id="trainer_id" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-300"></select>
+            </div>
 
+            <!-- Дата -->
+            <div class="mb-5">
+                <label for="booked_at" class="block text-sm font-medium text-gray-700 mb-1">Дата и время:</label>
+                <input type="datetime-local" name="booked_at" id="booked_at" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-300" required>
+            </div>
+
+            <!-- Кнопка отправки -->
+            <button type="submit" class="w-full bg-gradient-to-r from-indigo-600 to-blue-500 text-white py-3 px-6 rounded-md hover:from-indigo-700 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300 transform hover:scale-102">
+                Записаться
+            </button>
+        </form>
+    </div>
+
+    <!-- JavaScript для динамического обновления активностей и тренеров -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const branchSelect = document.getElementById('branch_id');

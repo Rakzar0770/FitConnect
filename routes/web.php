@@ -21,8 +21,9 @@ Route::prefix('bookings')->group(function () {
     Route::post('/create', [BookingsController::class, 'store'])->name('bookings.store');
 });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', [UsersController::class, 'dashboard'])->name('users.dashboard');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [BookingsController::class, 'dashboard'])->name('users.dashboard');
+    Route::delete('/bookings/{booking}', [BookingsController::class, 'destroy'])->name('bookings.destroy');
 });
 
 require __DIR__ . '/auth.php';
