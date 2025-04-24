@@ -11,7 +11,6 @@
         <ul class="space-y-6">
             @foreach ($activities as $activity)
                 <li class="block">
-                    <!-- Оборачиваем весь блок в ссылку -->
                     <a href="{{ route('activities.show', $activity) }}"
                        class="block bg-gradient-to-br from-white to-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                         <h2 class="text-2xl font-bold text-blue-700 mb-2">{{ $activity->name }}</h2>

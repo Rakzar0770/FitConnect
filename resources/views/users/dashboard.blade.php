@@ -113,7 +113,6 @@
                 return bookingTime < now;
             }
 
-            // Перемещение записей
             const upcomingBookings = document.querySelectorAll('.upcoming-booking');
             const historyList = document.querySelector('.past-bookings-list');
 
@@ -138,7 +137,6 @@
                         cancelButton.remove();
                     }
 
-                    // Добавляем кнопку "Удалить"
                     const deleteButton = document.createElement('form');
                     deleteButton.action = booking.querySelector('form').action;
                     deleteButton.method = 'POST';

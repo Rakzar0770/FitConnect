@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <style>
-        /* Общие стили */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f3f4f6;
@@ -16,17 +15,16 @@
             padding: 0;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Минимальная высота страницы */
+            min-height: 100vh;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            flex: 1; /* Контент растягивается, чтобы заполнить доступное пространство */
+            flex: 1;
         }
 
-        /* Шапка */
         .header {
             background-color: #1e40af;
             color: white;
@@ -42,7 +40,7 @@
         }
 
         .header a:hover {
-            color: #b6c1ff; /* Светло-синий при наведении */
+            color: #b6c1ff;
         }
 
         .header form button {
@@ -55,10 +53,9 @@
         }
 
         .header form button:hover {
-            color: #b6c1ff; /* Светло-синий при наведении */
+            color: #b6c1ff;
         }
 
-        /* Уведомления */
         .notification {
             padding: 10px;
             border-radius: 4px;
@@ -78,7 +75,6 @@
             color: #b91c1c;
         }
 
-        /* Подвал */
         .footer {
             text-align: center;
             padding: 10px;
@@ -88,7 +84,6 @@
     </style>
 </head>
 <body>
-<!-- Шапка -->
 <div class="header">
     <div class="container">
         <a href="{{ route('home') }}">Главная</a>
@@ -106,7 +101,6 @@
     </div>
 </div>
 
-<!-- Основной контент -->
 <div class="container">
     <!-- Уведомления -->
     @if (session('success'))
@@ -121,11 +115,9 @@
         </div>
     @endif
 
-    <!-- Основной контент страницы -->
     @yield('content')
 </div>
 
-<!-- Подвал -->
 <div class="footer">
     &copy; 2025 FitConnect. Все права защищены.
 </div>
