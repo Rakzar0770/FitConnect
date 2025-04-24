@@ -40,22 +40,12 @@ class BookingsController extends Controller
 
     public function dashboard(): View
     {
-        $user = Auth::user();
+        $bookings = $this->bookingService->getUpcomingAndPastBookings();
 
-        // Получаем все записи пользователя
-        $bookings = $user->bookings()->with(['activity', 'branch', 'trainer'])->get();
-
-        // Разделяем на будущие и прошедшие записи
-        $upcomingBookings = $bookings->filter(function ($booking) {
-            return $booking->booked_at > now();
-        })->sortBy('booked_at'); // Сортировка по времени (ближайшие первыми)
-
-        $pastBookings = $bookings->filter(function ($booking) {
-            return $booking->booked_at <= now();
-        })->sortByDesc('booked_at'); // Сортировка по времени (недавние первыми)
-
-        // Передаем данные в представление
-        return view('users.dashboard', compact('upcomingBookings', 'pastBookings'));
+        return view('users.dashboard', [
+            'upcomingBookings' => $bookings['upcoming'],
+            'pastBookings' => $bookings['past'],
+        ]);
     }
 
     public function destroy(Booking $booking): RedirectResponse

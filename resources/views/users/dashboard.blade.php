@@ -57,7 +57,6 @@
             @endif
         </div>
 
-        <!-- История записей -->
         <h2 class="text-xl font-semibold text-gray-700 mb-3">История записей</h2>
         <div id="past-bookings-container">
             <ul class="space-y-4 past-bookings-list">
@@ -199,7 +198,7 @@
 
             updateEmptyMessages();
 
-            const swiper = new Swiper('.mySwiper', {
+            new Swiper('.mySwiper', {
                 slidesPerView: 'auto',
                 spaceBetween: 30,
                 pagination: {

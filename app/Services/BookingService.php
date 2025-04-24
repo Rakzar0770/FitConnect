@@ -39,4 +39,28 @@ class BookingService
 
         Booking::create($bookingData);
     }
+
+    public function getAllUserBookings(): Collection
+    {
+        $user = Auth::user();
+        return $user->bookings()->with(['activity', 'branch', 'trainer'])->get();
+    }
+
+    public function getUpcomingAndPastBookings(): array
+    {
+        $bookings = $this->getAllUserBookings();
+
+        $upcomingBookings = $bookings->filter(function ($booking) {
+            return $booking->booked_at > now();
+        })->sortBy('booked_at'); // Сортировка по времени (ближайшие первыми)
+
+        $pastBookings = $bookings->filter(function ($booking) {
+            return $booking->booked_at <= now();
+        })->sortByDesc('booked_at'); // Сортировка по времени (недавние первыми)
+
+        return [
+            'upcoming' => $upcomingBookings,
+            'past' => $pastBookings,
+        ];
+    }
 }
