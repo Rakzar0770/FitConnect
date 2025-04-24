@@ -18,7 +18,7 @@
             <div class="swiper mySwiper mb-6" style="overflow: hidden;">
                 <div class="swiper-wrapper">
                     @foreach ($upcomingBookings as $booking)
-                        <div class="swiper-slide bg-white p-4 rounded-lg shadow-md flex flex-col justify-between min-w-[300px] max-w-[400px]">
+                        <div class="swiper-slide bg-white p-4 rounded-lg shadow-md justify-between min-w-[300px] max-w-[400px]">
                             <!-- Название организации -->
                             <p class="text-sm font-medium text-gray-500 uppercase">Организация:</p>
                             <p class="font-bold text-lg mb-2">{{ $booking->branch->organization?->name ?? 'Неизвестная организация' }}</p>

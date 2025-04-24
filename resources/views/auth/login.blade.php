@@ -1,47 +1,73 @@
 <x-guest-layout>
+    <!-- Заголовок -->
+    <div class="text-center mb-6">
+        <h1 class="text-3xl font-bold text-gray-900">Вход</h1>
+        <p class="text-lg text-gray-700">Введите свои данные для входа в систему.</p>
+    </div>
+
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}">
+    <!-- Форма входа -->
+    <form method="POST" action="{{ route('login') }}" class="space-y-6">
         @csrf
 
         <!-- Email Address -->
         <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+            <div class="mt-1">
+                <input id="email" name="email" type="email" autocomplete="email" required
+                       class="block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                       placeholder="Введите ваш email" value="{{ old('email') }}">
+                <x-input-error :messages="$errors->get('email')" class="mt-2 text-red-600 text-sm" />
+            </div>
         </div>
 
         <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <div>
+            <label for="password" class="block text-sm font-medium text-gray-700">Пароль</label>
+            <div class="mt-1">
+                <input id="password" name="password" type="password" autocomplete="current-password" required
+                       class="block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                       placeholder="Введите пароль">
+                <x-input-error :messages="$errors->get('password')" class="mt-2 text-red-600 text-sm" />
+            </div>
         </div>
 
         <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+        <div class="flex items-center">
+            <input id="remember_me" name="remember" type="checkbox"
+                   class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+            <label for="remember_me" class="ml-2 block text-sm text-gray-900">
+                Запомнить меня
             </label>
         </div>
 
-        <div class="flex items-center justify-end mt-4">
+        <div class="flex items-center justify-between mt-4">
+            <!-- Ссылка "Забыли пароль?" -->
             @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
+                <a href="{{ route('password.request') }}"
+                   class="font-medium text-indigo-600 hover:text-indigo-500 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300">
+                    Забыли пароль?
                 </a>
             @endif
 
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
+            <!-- Кнопка "Войти" -->
+            <button type="submit"
+                    class="w-auto flex justify-center py-3 px-6 border border-transparent rounded-md shadow-sm text-sm font-medium  bg-indigo-50 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-50 transition duration-300">
+                Войти
+            </button>
         </div>
     </form>
+
+    <!-- Разделитель и кнопка регистрации -->
+    <div class="mt-6 text-center">
+        <p class="text-sm text-gray-600">
+            Нет аккаунта?
+            <a href="{{ route('register') }}"
+               class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300">
+                Зарегистрироваться
+            </a>
+        </p>
+    </div>
 </x-guest-layout>
