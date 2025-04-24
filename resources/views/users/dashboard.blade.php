@@ -42,7 +42,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"
-                                            class="w-full py-2 px-4 bg-white border border-red-500 text-red-500 rounded hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-300"
+                                            class="w-full py-2 px-4 bg-white border border-red-500 text-red-500 rounded hover:bg-red-50 transition duration-300"
                                             onclick="return confirm('Вы уверены, что хотите отменить эту запись?')">
                                         Отменить запись
                                     </button>
@@ -94,7 +94,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"
-                                        class="w-full py-2 px-4 bg-white border border-red-500 text-red-500 rounded hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-300">
+                                        class="w-full py-2 px-4 bg-white border border-red-500 text-red-500 rounded hover:bg-red-50 transition duration-300">
                                     Удалить
                                 </button>
                             </form>
